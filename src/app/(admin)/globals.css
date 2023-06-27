@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .title {
+        @apply font-semibold text-xl tracking-wider
+    }
+    .btn-primary {
+        @apply h-10 bg-green-500 hover:bg-green-400 rounded text-white transition-all duration-300
+    }
+    .btn-red-sm {
+        @apply flex items-center gap-1 bg-red-500 rounded text-sm text-white font-light tracking-tight px-1 py-0.5
+    }
+    .btn-process {
+        @apply rounded w-16 py-1 text-[10px] font-semibold text-white text-center hover:opacity-80 transition-all
+    }
+    .input-style {
+        @apply h-10 w-full outline-none bg-zinc-50 border border-zinc-500 focus-within:border-green-500 rounded transition-all px-2.5
+    }
+    .textarea-style {
+        @apply w-full outline-none bg-zinc-50 border border-zinc-500 focus-within:border-green-500 rounded transition-all p-2.5
+    }
+    .pagination {
+        @apply hover:text-red-500 transition-all duration-300
+    }
+}
+
+@layer base {
+    html, body {
+        height: 100%;
+        background-color: #f4f4f5;
+        color: #000;
+        font-family: 'Montserrat';
+    }
+}
