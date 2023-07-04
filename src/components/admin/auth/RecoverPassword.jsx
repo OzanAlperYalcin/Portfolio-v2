@@ -1,15 +1,16 @@
 "use client"
+import Link from 'next/link'
 import { loginSchema } from './validations'
 import { Formik, Form, Field } from 'formik'
 import { useState } from 'react'
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import Link from 'next/link'
+// import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 function RecoverPasswordForm() {
     const [show, setShow] = useState(false)
     const handleSubmit = (values, bag) => {
         console.log(values, bag)
     }
+
     return (
         <Formik
             initialValues={{

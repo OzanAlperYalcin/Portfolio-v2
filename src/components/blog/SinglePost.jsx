@@ -1,4 +1,5 @@
-import BlogPost from './BlogPost'
+
+import "highlight.js/styles/monokai-sublime.css"
 import { FaPen, FaCalendar, FaHashtag } from 'react-icons/fa'
 import moment from "moment"
 
@@ -20,7 +21,7 @@ function SinglePost({ post }) {
           <p><span className="font-semibold">Tarih:</span> {moment(post.createdAt).format('LL')}</p>
         </div>
       </div>
-      <BlogPost data={post.post} />
+      <div dangerouslySetInnerHTML={{ __html: post.post }} />
       <div className="flex justify-end items-center gap-2.5">
         <FaHashtag size={30} />
         <p>{post.hashtag}</p>

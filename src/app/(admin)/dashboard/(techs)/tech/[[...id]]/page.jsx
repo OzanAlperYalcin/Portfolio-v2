@@ -9,7 +9,7 @@ export default async function TechPage({ params }) {
     ]
 
     const [tech, techs] = await Promise.all(promises)
-    console.log(techs)
+
     return (
         <FormContainer title={'TEKNOLOJİ'}>
             <TechForm data={tech?.tech} totalCount={techs.totalCount}/>

@@ -2,7 +2,7 @@ import Bookmark from './Bookmark'
 import Link from 'next/link'
 
 function Bookmarks({ bookmarks, page }) {
-    console.log(page)
+
     return (
         <div>
             <h1 className='title'>Yer İmlerim</h1>

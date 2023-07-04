@@ -1,5 +1,5 @@
 import { FadeIn } from "@/components/animation"
-import SinglePost from "@/components/blog/post"
+import SinglePost from "@/components/blog/SinglePost"
 
 function PostContainer({ post }) {
     return (
