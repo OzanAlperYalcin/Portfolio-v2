@@ -24,8 +24,8 @@ function PostsTable({ posts }) {
                 ]}
                 body={posts?.map((post, i) => [
                     i + 1,
-                    <div className='flex justify-center'>
-                        <img src={post.photoURL} className='h-10 w-16'/>
+                    <div key={i} className='flex justify-center'>
+                        <img src={post.photoURL} alt={post.title} className='h-10 w-16'/>
                     </div>,
                     post.title,
                     <p key={i} className='line-clamp-1'>{post.text}</p>,
