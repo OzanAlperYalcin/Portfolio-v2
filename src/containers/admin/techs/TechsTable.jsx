@@ -21,7 +21,7 @@ function TechsTable({ techs }) {
                     { name: 'İŞLEMLER', width: 150 }
                 ]}
                 body={techs?.map((tech, i) => [
-                    i + 1,
+                    tech.sort,
                     getTechIcon(tech.name),
                     tech.type,
                     <p key={i} className='line-clamp-1'>{tech.hashtag}</p>,

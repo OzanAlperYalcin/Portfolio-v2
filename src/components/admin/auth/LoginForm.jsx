@@ -39,14 +39,14 @@ function LoginForm() {
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Kullanıcı Adı</span>
-                            {errors.email && touched.email ? <span className='text-red-500'>{errors.email}</span> : null}
+                            {errors.email && touched.email ? <span className='form-error'>{errors.email}</span> : null}
                         </div>
                         <Field name='email' className='input-style' />
                     </label>
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Şifre</span>
-                            {errors.password && touched.password ? <span className='text-red-500'>{errors.password}</span> : null}
+                            {errors.password && touched.password ? <span className='form-error'>{errors.password}</span> : null}
                         </div>
                         <div className='relative'>
                             <Field name='password' type={show ? 'text':'password'} className='input-style' />

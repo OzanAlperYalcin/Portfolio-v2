@@ -6,6 +6,6 @@ export default async function SocialsPage({ searchParams }) {
     const socials = !search ? await fetchSocials() : await searchSocials(search)
     
     return (
-        <SocialsContainer data={socials} />
+        <SocialsContainer data={socials} title={'SOSYAL MEDYA'} />
     )
 }

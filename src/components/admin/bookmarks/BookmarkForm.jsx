@@ -39,21 +39,21 @@ function BookmarkForm({ data }) {
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Başlık</span>
-                            {errors.title && touched.title ? <span className='text-red-500'>{errors.title}</span> : null}
+                            {errors.title && touched.title ? <span className='form-error'>{errors.title}</span> : null}
                         </div>
                         <Field name='title' className='input-style' />
                     </label>
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Açıklama</span>
-                            {errors.description && touched.description ? <span className='text-red-500'>{errors.description}</span> : null}
+                            {errors.description && touched.description ? <span className='form-error'>{errors.description}</span> : null}
                         </div>
                         <Field name='description' className='input-style' />
                     </label>
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Link</span>
-                            {errors.link && touched.link ? <span className='text-red-500'>{errors.link}</span> : null}
+                            {errors.link && touched.link ? <span className='form-error'>{errors.link}</span> : null}
                         </div>
                         <Field name='link' className='input-style' />
                     </label>

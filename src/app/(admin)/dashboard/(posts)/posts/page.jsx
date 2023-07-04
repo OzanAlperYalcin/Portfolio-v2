@@ -6,6 +6,6 @@ export default async function PostsPage({ searchParams }) {
     const posts = !search ? await fetchPosts() : await searchPosts(search)
 
     return (
-        <PostsContainer data={posts} />
+        <PostsContainer data={posts} title={'GÖNDERİLER'} />
     )
 }

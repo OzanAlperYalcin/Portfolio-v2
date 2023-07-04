@@ -6,6 +6,6 @@ export default async function TechsPage({ searchParams }) {
     const techs = !search ? await fetchTechs() : await searchTechs(search)
     
     return (
-        <TechsContainer data={techs} />
+        <TechsContainer data={techs} title={'TEKNOLOJİLER'} />
     )
 }

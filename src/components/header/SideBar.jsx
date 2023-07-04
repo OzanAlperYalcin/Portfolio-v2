@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa"
 import Link from 'next/link'
 
 function SideBar({ navMenu }) {
-    
+
     const [toggle, setToggle] = useState(false)
     const handleSideBar = () => {
         setToggle(prev => !prev)
@@ -18,7 +18,9 @@ function SideBar({ navMenu }) {
             <div className={`sidebar ${toggle ? 'open' : ''}`}>
                 <div className='mt-5 grid text-center gap-10'>
                     {navMenu.map((menu, i) => (
-                        <Link key={i} href={menu.link}>{menu.name}</Link>
+                        <Link key={i} href={menu.link} onClick={() => handleSideBar()}>
+                            {menu.name}
+                        </Link>
                     ))}
                 </div>
             </div>

@@ -18,11 +18,17 @@
     .input-style {
         @apply h-10 w-full outline-none bg-zinc-50 border border-zinc-500 focus-within:border-green-500 rounded transition-all px-2.5
     }
+    .form-error {
+        @apply text-xs font-bold text-red-500 tracking-wider
+    }
     .textarea-style {
         @apply w-full outline-none bg-zinc-50 border border-zinc-500 focus-within:border-green-500 rounded transition-all p-2.5
     }
     .pagination {
         @apply hover:text-red-500 transition-all duration-300
+    }
+    .popover-item {
+        @apply flex items-center gap-2.5 p-2.5 hover:bg-red-100 transition-all duration-300
     }
 }
 

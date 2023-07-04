@@ -24,7 +24,7 @@ async function Social({ footer = false }) {
 
     return (
         <div className='flex items-center justify-end gap-5'>
-            {socials.map((social, i) => (
+            {socials.sort((a, b) => a.sort - b.sort).map((social, i) => (
                 renderSocialIcon(social, i)
             ))}
         </div>

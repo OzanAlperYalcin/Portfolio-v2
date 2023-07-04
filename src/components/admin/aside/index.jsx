@@ -14,14 +14,14 @@ const navMenu = [
 
 function Aside() {
   const pathName = usePathname()
-  const activePath = pathName.split('/')
+  const activePath = pathName.split('/').reverse()[0]
 
   return (
     <aside className='flex-shrink-0 w-[64px]'>
       <div className='h-screen fixed top-14 bottom-0 bg-black'>
         <div className='grid gap-5 text-white text-2xl p-2.5'>
           {navMenu.map((menu, i) => (
-            <Link key={i} href={menu.url} title={menu.title} className={`${menu.active === activePath[activePath.length - 1] ? 'bg-red-500' : 'bg-white/20'} rounded-full hover:bg-red-400 p-2.5 transition-all`}>
+            <Link key={i} href={menu.url} title={menu.title} className={`${menu.active.includes(activePath) ? 'bg-red-500' : 'bg-white/20'} rounded-full hover:bg-red-400 p-2.5 transition-all`}>
               <menu.icon />
             </Link>
           ))}

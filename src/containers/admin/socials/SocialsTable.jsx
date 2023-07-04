@@ -21,7 +21,7 @@ function SocialsTable({ socials }) {
                     { name: 'İŞLEMLER', width: 150 }
                 ]}
                 body={socials?.map((social, i) => [
-                    i + 1,
+                    social.sort,
                     getSocialIcon(social.title),
                     social.name,
                     social.link,

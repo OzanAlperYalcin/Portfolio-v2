@@ -29,6 +29,20 @@ export const fetchPost = async (id) => {
     }
 }
 
+export const fetchPostBySlug = async (slug) => {
+    try {
+        const postResponse = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'posts/post/' + slug, { cache: 'no-store' })
+        const postResult = await postResponse.json()
+        const userResponse = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'users/' + postResult.post.uid, { cache: 'no-store' })
+        const userResult = await userResponse.json()
+        postResult.post.author = userResult.user
+        const data = { ...postResult }
+        return data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const createPost = async (payload, authorization) => {
     try {
         const res = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'posts/', {

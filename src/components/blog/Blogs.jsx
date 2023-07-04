@@ -26,7 +26,7 @@ function Blogs({ posts }) {
                     <h3 className='text'>{posts.date}</h3>
                     <div className='grid gap-2.5 mt-2.5'>
                         {posts.data.map((post, i) => (
-                            <Link key={i} href={post.title} className='blog group'>
+                            <Link key={i} href={`/blog/${post.slug}`} className='blog group'>
                                 <p className='group-hover:text-red-600 transition-all duration-300'>{post.title}</p>
                                 <span className='text-sm invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300'>
                                     {post.hashtag}

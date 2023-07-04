@@ -1,6 +1,7 @@
+import HomeContainer from "@/containers/admin/home";
 
-export default function Dashboard() {
+export default async function Dashboard() {
     return (
-        '123'
+        <HomeContainer title={'DASHBOARD'}/>
     )
 }

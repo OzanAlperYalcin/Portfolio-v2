@@ -10,7 +10,7 @@ function Table({ body, head, search }) {
     const [query, setQuery] = useState('')
 
     return (
-        <div className='grid gap-5'>
+        <div className='grid gap-5 text-sm'>
             {search && <SearchTable state={{ query, setQuery }} />}
             {isMobile ?
                 <MobileTable head={head} body={body} />

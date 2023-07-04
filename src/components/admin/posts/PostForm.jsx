@@ -1,17 +1,21 @@
 "use client"
+import Editor from '../editor'
 import { Formik, Form, Field } from 'formik'
 import { createPost, updatePost } from '@/services/posts'
 import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { validationSchema } from './validation'
 import { getCookie } from 'cookies-next'
+import { generateSlug } from '@/utils/blog'
 
-function PostForm({ data }) {
+function PostForm({ data, uid }) {
     const router = useRouter()
 
     const handleSubmit = async (values, bag) => {
         const token = getCookie('token')
         const authorization = `Bearer ${token}`
+        values.slug = generateSlug(values.title)
+        values.uid = uid
         const res = data ? await updatePost(data._id, values, authorization) : await createPost(values, authorization)
 
         if (res.status) {
@@ -35,33 +39,33 @@ function PostForm({ data }) {
             validationSchema={validationSchema}
             onSubmit={(values, bag) => handleSubmit(values, bag)}
         >
-            {({ errors, touched, isSubmitting }) => (
+            {({ values, errors, touched, isSubmitting, setFieldValue, setFieldTouched }) => (
                 <Form className='grid gap-5'>
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Gönderi Başlığı</span>
-                            {errors.title && touched.title ? <span className='text-red-500'>{errors.title}</span> : null}
+                            {errors.title && touched.title ? <span className='form-error'>{errors.title}</span> : null}
                         </div>
                         <Field name='title' className='input-style' />
                     </label>
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Gönderi Fotoğrafı</span>
-                            {errors.photoURL && touched.photoURL ? <span className='text-red-500'>{errors.photoURL}</span> : null}
+                            {errors.photoURL && touched.photoURL ? <span className='form-error'>{errors.photoURL}</span> : null}
                         </div>
                         <Field name='photoURL' className='input-style' />
                     </label>
-                    <label className='grid gap-2.5'>
+                    <div className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Gönderi Yazısı</span>
-                            {errors.post && touched.post ? <span className='text-red-500'>{errors.post}</span> : null}
+                            {errors.post && touched.post ? <span className='form-error'>{errors.post}</span> : null}
                         </div>
-                        <Field name='post' className='textarea-style' component='textarea' rows={5} />
-                    </label>
+                        <Editor post={values.post} setFieldValue={setFieldValue} setFieldTouched={setFieldTouched} />
+                    </div>
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Hashtag</span>
-                            {errors.hashtag && touched.hashtag ? <span className='text-red-500'>{errors.hashtag}</span> : null}
+                            {errors.hashtag && touched.hashtag ? <span className='form-error'>{errors.hashtag}</span> : null}
                         </div>
                         <Field name='hashtag' className='input-style' />
                     </label>

@@ -7,13 +7,14 @@ import { validationSchema } from './validation'
 import { socialSelect } from '@/utils/socials'
 import { getCookie } from 'cookies-next'
 
-function SocialForm({ data }) {
+function SocialForm({ data, totalCount }) {
     const router = useRouter()
 
     const handleSubmit = async (values, bag) => {
         const token = getCookie('token')
         const authorization = `Bearer ${token}`
-        const res = data ? await updateSocial(data._id, value, authorization) : await createSocial(values, authorization)
+        if (data?.sort !== values.sort) values.oldSort = data.sort
+        const res = data ? await updateSocial(data._id, values, authorization) : await createSocial(values, authorization)
 
         if (res.status) {
             toast.success('Sosyal medya kaydedildi.')
@@ -30,7 +31,8 @@ function SocialForm({ data }) {
             initialValues={{
                 title: data?.title ?? '',
                 name: data?.name ?? '',
-                link: data?.link ?? ''
+                link: data?.link ?? '',
+                sort: data?.sort ?? +totalCount + 1
             }}
             validationSchema={validationSchema}
             onSubmit={(values, bag) => handleSubmit(values, bag)}
@@ -39,8 +41,15 @@ function SocialForm({ data }) {
                 <Form className='grid gap-5'>
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
+                            <span>Sıra</span>
+                            {errors.sort && touched.sort ? <span className='form-error'>{errors.sort}</span> : null}
+                        </div>
+                        <Field name='sort' className='input-style' type='number' min='1' max={!data ? +totalCount + 1 : totalCount} disabled={!data ? true : false} />
+                    </label>
+                    <label className='grid gap-2.5'>
+                        <div className='flex justify-between text-sm'>
                             <span>Sosyal Medya Seçiniz</span>
-                            {errors.title && touched.title ? <span className='text-red-500'>{errors.title}</span> : null}
+                            {errors.title && touched.title ? <span className='form-error'>{errors.title}</span> : null}
                         </div>
                         <Field name='title' className='input-style' component='select' >
                             <option disabled>Sosyal medya seçiniz</option>
@@ -52,14 +61,14 @@ function SocialForm({ data }) {
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>İsim</span>
-                            {errors.name && touched.name ? <span className='text-red-500'>{errors.name}</span> : null}
+                            {errors.name && touched.name ? <span className='form-error'>{errors.name}</span> : null}
                         </div>
                         <Field name='name' className='input-style' />
                     </label>
                     <label className='grid gap-2.5'>
                         <div className='flex justify-between text-sm'>
                             <span>Sosyal Medya URL</span>
-                            {errors.link && touched.link ? <span className='text-red-500'>{errors.link}</span> : null}
+                            {errors.link && touched.link ? <span className='form-error'>{errors.link}</span> : null}
                         </div>
                         <Field name='link' className='input-style' />
                     </label>

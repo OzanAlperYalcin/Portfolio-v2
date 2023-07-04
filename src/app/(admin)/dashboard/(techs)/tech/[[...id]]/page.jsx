@@ -1,13 +1,18 @@
 import TechForm from "@/components/admin/techs/TechForm"
 import FormContainer from "@/containers/admin/form"
-import { fetchTech } from "@/services/techs"
+import { fetchTech, fetchTechs } from "@/services/techs"
 
 export default async function TechPage({ params }) {
-    const tech = await fetchTech(params.id)
+    const promises = [
+        fetchTech(params.id),
+        fetchTechs()
+    ]
 
+    const [tech, techs] = await Promise.all(promises)
+    console.log(techs)
     return (
-        <FormContainer title={'TEKNOLOJİLER'}>
-            <TechForm data={tech?.tech} />
+        <FormContainer title={'TEKNOLOJİ'}>
+            <TechForm data={tech?.tech} totalCount={techs.totalCount}/>
         </FormContainer>
     )
 }

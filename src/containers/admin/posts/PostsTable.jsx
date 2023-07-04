@@ -16,15 +16,19 @@ function PostsTable({ posts }) {
             <Table
                 head={[
                     { name: 'SIRA' },
+                    { name: 'FOTOĞRAF'},
                     { name: 'BAŞLIK' },
-                    { name: 'GÖNDERİ' },
+                    { name: 'GÖNDERİ', width: 250 },
                     { name: 'TARİH' },
                     { name: 'İŞLEMLER', width: 150 }
                 ]}
                 body={posts?.map((post, i) => [
                     i + 1,
+                    <div className='flex justify-center'>
+                        <img src={post.photoURL} className='h-10 w-16'/>
+                    </div>,
                     post.title,
-                    <p key={i} className='line-clamp-1'>{post.post}</p>,
+                    <p key={i} className='line-clamp-1'>{post.text}</p>,
                     moment(post.createdAt).format('LL'),
                     <div key={i} className="flex justify-center items-center gap-2.5">
                         <Link href={`/dashboard/post/${post._id}`} className="bg-green-500 btn-process">DÜZENLE</Link>
